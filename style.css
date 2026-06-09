@@ -1,0 +1,166 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background-color: #1a1a2e;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #eee;
+}
+
+.game-container {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(16px, 4vw, 32px);
+  max-width: 100%;
+}
+
+/* 보드 영역 — 화면 너비에 맞춰 축소, 비율 1:2 유지 */
+.game-board {
+  position: relative;
+  width: min(calc(100vw - 32px - 140px - clamp(16px, 4vw, 32px)), 300px);
+  border: 4px solid #444;
+  flex-shrink: 0;
+}
+
+#board {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 10 / 20;
+  background-color: #000;
+}
+
+.game-over {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.game-over.hidden {
+  display: none;
+}
+
+.game-over-text {
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+#restart-btn {
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #eee;
+  background-color: #444;
+  border: 2px solid #666;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#restart-btn:hover {
+  background-color: #555;
+}
+
+.score-panel {
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+}
+
+.score-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.score-box + .score-box {
+  margin-top: 16px;
+}
+
+.score-label {
+  font-size: 0.875rem;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.score-value {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 다음 블록 미리보기 캔버스 */
+.next-box canvas {
+  display: block;
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background-color: #000;
+  border: 2px solid #444;
+}
+
+/* 모바일: 세로 배치, 보드가 화면 너비에 맞게 확장 */
+@media (max-width: 520px) {
+  body {
+    align-items: flex-start;
+    padding-top: 24px;
+  }
+
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .game-board {
+    width: min(calc(100vw - 32px), 300px);
+  }
+
+  .score-panel {
+    width: min(calc(100vw - 32px), 300px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 12px 24px;
+  }
+
+  .title {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  .score-box {
+    margin-top: 0 !important;
+  }
+
+  .next-box {
+    grid-column: 1 / -1;
+    align-items: center;
+  }
+
+  .next-box canvas {
+    max-width: 100px;
+  }
+}

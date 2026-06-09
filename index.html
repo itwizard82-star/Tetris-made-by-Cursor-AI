@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetris</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-container">
+    <div class="game-board">
+      <canvas id="board" width="300" height="600"></canvas>
+      <div id="game-over" class="game-over hidden">
+        <p class="game-over-text">게임 오버</p>
+        <button id="restart-btn" type="button">다시 시작</button>
+      </div>
+    </div>
+    <aside class="score-panel">
+      <h1 class="title">Tetris</h1>
+      <div class="score-box">
+        <span class="score-label">Score</span>
+        <span id="score" class="score-value">0</span>
+      </div>
+      <div class="score-box">
+        <span class="score-label">Level</span>
+        <span id="level" class="score-value">1</span>
+      </div>
+      <div class="score-box">
+        <span class="score-label">Lines</span>
+        <span id="lines" class="score-value">0</span>
+      </div>
+      <div class="score-box next-box">
+        <span class="score-label">Next</span>
+        <canvas id="next" width="120" height="120"></canvas>
+      </div>
+    </aside>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
